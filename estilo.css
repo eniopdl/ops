@@ -1,0 +1,162 @@
+body{
+
+
+
+background-color: blue;
+
+}
+
+h1,h2,h5{
+
+font-family: verdana;
+}
+
+.tabela{
+
+table, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+tr, td {
+    padding: 15px;
+}
+}
+
+.banner{
+
+width:700px;
+height:300px;
+border: 3px solid red;
+margin: auto;
+background-size: 100% 100%;
+animation:banner 10s infinite;
+}
+
+@keyframes banner{
+
+0%, 20% {
+	
+	background-image: url( imagem/img3.jpg);
+}
+20%, 40% {
+	
+	background-image: url( imagem/img2.jpg);
+}
+
+40%, 60% {
+	
+	background-image: url( imagem/img4.jpg);
+}
+
+60%, 80% {
+	
+	background-image: url( imagem/img5.jpg);
+}
+
+80%, 100% {
+	
+	background-image: url( imagem/img6.jpg);
+}
+}
+
+header a{
+
+text-decoration:none;
+color:#FFFFFF;
+
+}
+
+header a:hover{
+color:#000000;
+background-color: #CCCCCC;
+
+}
+
+
+section{
+background-color: #FFFFFF;
+padding: 10px;
+}
+
+footer{
+
+background-color: black;
+color: white;
+text-align: center;
+padding: 1px;
+}
+
+img{
+
+max-width:100%;
+}
+
+nav{
+
+background-color:black;
+font-family: verdana;
+font-weight: bold;
+font-size: 14px;
+}
+
+nav ul{
+
+height: auto;
+padding:8px 0px;
+margin:0px;
+}
+
+nav li {
+
+display: inline;
+padding: 10px;
+margin: 0px;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:#FFFFFF;
+padding: 8px 8px 8px 8px;
+}
+
+nav a:hover{
+color:#000000;
+background-color: #CCCCCC;
+
+}
+
+@media all and (min-width:960px){
+
+body{
+width:960px;
+margin: auto;
+
+}
+
+}
+
+@media all and (min-width:480px){
+
+nav{
+height:100%;
+
+}
+
+nav li {
+
+margin: 0px;
+padding: 10px;
+}
+}
+
+.form {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 310px;
+  background: #CCCCCC;
+  border-radius: 3px;
+  
+  }
