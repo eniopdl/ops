@@ -122,6 +122,7 @@ $nome = $dadosUsuario["nome"];
 $user = $dadosUsuario["login"];
 $pass = $dadosUsuario["senha"];
 $email = $dadosUsuario["email"];
+$_SESSION['codigo'] = $codigo;
 $_SESSION['nome'] = $nome;
 $_SESSION['loginuser'] = $user;
 $_SESSION['senha'] = $pass;
