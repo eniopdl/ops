@@ -47,9 +47,12 @@ include("connection.php");
         <p>Bairro:<input type="text" name="bairro" value="" placeholder="Bairro"></p>
         <p>Cidade:<input type="text" name="cidade" value="" placeholder="Cidade"></p>
 		<p>Estado:<input type="text" name="estado" value="" placeholder="Estado"></p>
+		<p>Data:<input type="text" name="data" value="" placeholder="dd/mm/aaaa"></p>
 		<p>Comentar:<textarea name="comentar" rows="10" cols="40" maxlength="500"></textarea></p>
         <input type="file" multiple name="arq[]" id="arq"><input name="envia" type="submit" value="Postar">
-      </form>
+	
+
+	  </form>
     </div>
 
 </section>
@@ -71,6 +74,7 @@ $rua = trim(strip_tags($_POST["rua"]));
 $bairro = trim(strip_tags($_POST["bairro"]));
 $cidade = trim(strip_tags($_POST["cidade"]));
 $estado = trim(strip_tags($_POST["estado"]));
+$data = trim(strip_tags($_POST["data"]));
 $comentar = trim(strip_tags($_POST["comentar"]));
 
 
@@ -96,7 +100,7 @@ $comentar = trim(strip_tags($_POST["comentar"]));
 	move_uploaded_file($tmp, $folder.'/'. $novoNome);
 	
 	$sql = "INSERT INTO postagem(local, rua, bairro, cidade, estado, cometario, imagem, data) VALUES ";
-		$sql .= "('$local', '$rua', '$bairro', '$cidade', '$estado', '$comentar', '$novoNome', '2015')";
+		$sql .= "('$local', '$rua', '$bairro', '$cidade', '$estado', '$comentar', '$novoNome', '$data')";
 		$resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 
 		
 		echo "<script> alert ('Poster cadastrado com sucesso'); location.href='postar.php'</script>"; exit;
