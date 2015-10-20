@@ -69,7 +69,7 @@ $user = $_POST["login"];
 $pass = $_POST["senha"];
 $email = $_POST["email"];
 	if($user=="" OR $pass=="" OR $nome=="" OR $email=="" ){
-echo "<script> alert ('Preencha todos os campos'); location.href='cadastrarUsuario.php'</script>";
+echo "<script> alert ('Preencha todos os campos'); location.href='cadastrarUsuario.php'</script>"; exit;
 }
 $sql = "INSERT INTO usuario(nome, login, senha, email, permissao) VALUES ";
 		$sql .= "('$nome','$user','$pass','$email','0')";
