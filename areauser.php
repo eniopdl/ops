@@ -31,9 +31,10 @@ session_start();
 <ul>
 <li><a href="index.php">Início</a></li>
 <li><a href="postar.php">Postagens</a></li>
+<li><a href="minhaconta.php">Minha Conta</a></li>
+<li><a href="minhapostagem.php">Minha Postagem</a></li>
+<li><a href="servico.php">Criar Postagem</a></li>
 <li><a href="contato.php">Contato</a></li>
-<li><a href="servico.php">Servico</a></li>
-
 </ul>
 </nav>
 
