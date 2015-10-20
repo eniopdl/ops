@@ -48,9 +48,9 @@ $resultado = mysqli_query ($conexao,	"SELECT * FROM postagem");
 		for ($i=0 ; $i<$linhas ; $i++)
 		{
 			$reg = mysqli_fetch_row($resultado);  
-			echo "<div class='tabela'> <table border='1px'><tr> <td>Postagem</td> &nbsp &nbsp <td>Nome do local</td> <td>Rua</td> <td>Bairro</td>";
+			echo "<div class='tabela'> <table border='1px'><tr>  <td>Nome do local</td> <td>Rua</td> <td>Bairro</td>";
 			echo "<td>Cidade</td> <td>Estado</td> <td>Comentário</td> </tr>";
-			echo "<tr> <td>$reg[0]</td> &nbsp &nbsp <td>$reg[1]</td> <td>$reg[2]</td> <td>$reg[3]</td>";
+			echo "<tr>  <td>$reg[1]</td> <td>$reg[2]</td> <td>$reg[3]</td>";
 			echo "<td>$reg[4]</td> <td>$reg[5]</td> <td>$reg[6]</td> </tr> </table>";
 			echo "<br><img src='upload/postagens/$reg[7] '	width='200px' /> <br>Data:&nbsp $reg[8] </div> <br>";
 			echo "<input type='submit'  name='pessimo' value='Péssimo' > <input type='submit' name='otimo' value='Ótimo' color='green'>";
