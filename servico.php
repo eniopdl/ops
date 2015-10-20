@@ -76,7 +76,7 @@ $cidade = trim(strip_tags($_POST["cidade"]));
 $estado = trim(strip_tags($_POST["estado"]));
 $data = trim(strip_tags($_POST["data"]));
 $comentar = trim(strip_tags($_POST["comentar"]));
-
+$usuario = $_SESSION['user'];
 
 	//variável que armazena a pasta de upload
 	
@@ -99,8 +99,8 @@ $comentar = trim(strip_tags($_POST["comentar"]));
 	
 	move_uploaded_file($tmp, $folder.'/'. $novoNome);
 	
-	$sql = "INSERT INTO postagem(local, rua, bairro, cidade, estado, cometario, imagem, data) VALUES ";
-		$sql .= "('$local', '$rua', '$bairro', '$cidade', '$estado', '$comentar', '$novoNome', '$data')";
+	$sql = "INSERT INTO postagem(local, rua, bairro, cidade, estado, cometario, imagem, data, usuario) VALUES ";
+		$sql .= "('$local', '$rua', '$bairro', '$cidade', '$estado', '$comentar', '$novoNome', '$data' , $usuario)";
 		$resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 
 		
 		echo "<script> alert ('Poster cadastrado com sucesso'); location.href='postar.php'</script>"; exit;
