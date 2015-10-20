@@ -41,25 +41,30 @@ include("connection.php");
 
 <h2>Informações Postadas</h2>
 <hr/>
+<form action="" method="POST">
+		 <input type='submit'  name='excluir' value='Excluir' >
+			<input type='text' name='codigo'  placeholder='codigo postagem'>
+			</form>
+			<br>
+		
 <?php
 $resultado = mysqli_query ($conexao,	"SELECT * FROM postagem");
 		$linhas = mysqli_num_rows ($resultado);
 		echo "<p><b>Postagens</b></p>";
+		echo " <table border='1px'><tr> <td>Postagem</td>  <td>Nome do local</td> <td>Rua</td> <td>Bairro</td>";
+		echo "<td>Cidade</td> <td>Estado</td> <td>Comentário</td> <td>Imagem</td> <td>Data</td> </tr>";
 		for ($i=0 ; $i<$linhas ; $i++)
 		{
 			$reg = mysqli_fetch_row($resultado);  
-			echo "<div class='tabela'> <table border='1px'><tr> <td>Postagem</td> &nbsp &nbsp <td>Nome do local</td> <td>Rua</td> <td>Bairro</td>";
-			echo "<td>Cidade</td> <td>Estado</td> <td>Comentário</td> <td>Ações</td> </tr>";
-			echo "<tr> <td>$reg[0]</td> &nbsp &nbsp <td>$reg[1]</td> <td>$reg[2]</td> <td>$reg[3]</td>";
-			echo "<td>$reg[4]</td> <td>$reg[5]</td> <td>$reg[6]</td> 
-			<td><input type='submit'  name='editar' value='Editar' >  <input type='submit'  name='excluir' value='Excluir' ></td> </tr> </table>";
-			echo "<br><img src='upload/postagens/$reg[7] '	width='200px' /> <br>Data:&nbsp $reg[8] </div> <br>";
-			echo "<input type='submit'  name='pessimo' value='Péssimo' > <input type='submit' name='otimo' value='Ótimo' color='green'>";
-			echo "&nbsp <input type='submit' name='regular' value='Regular'  >			<hr/>";
+
+			
+			echo "<tr> <td>$reg[0]</td> <td>$reg[1]</td> <td>$reg[2]</td> <td>$reg[3]</td>";
+			echo "<td>$reg[4]</td> <td>$reg[5]</td> <td>$reg[6]</td>  ";
+			echo "<td><img src='upload/postagens/$reg[7] '	width='50px' /></td>  <td>$reg[8]</td>  </tr>";
+		    
 			}
-
 		?>
-
+		</table>
 </section>
 
 <footer>
@@ -71,20 +76,28 @@ $resultado = mysqli_query ($conexao,	"SELECT * FROM postagem");
 </body>
 </html>
 <?php
-	$operacao = $_POST["operacao"];
-
-	include "conecta_mysql.php";
-	elseif ($operacao=="excluir")
-	{
+	
+	if(isset( $_POST['excluir'])){
+		
 		$codigo = $_POST["codigo"];
-		$sql = "DELETE FROM produtos WHERE codigo_produto=$codigo";
+		if($codigo==""){
+		echo "<script> alert ('Preencha o campo'); location.href='postaradm.php'</script>"; exit;
+
+		}
+		$sql = "DELETE FROM postagem WHERE id=$codigo";
 		$resultado = mysqli_query ($conexao,$sql); 
 		$linhas = mysqli_affected_rows($conexao);
 		if($linhas==1)
-		{ echo "Produto excluído com sucesso!"; }
+		{ 
+		echo "<script> alert ('Postagem excluído com sucesso!'); location.href='postaradm.php'</script>"; exit;
+
+		}
+		
 		else
-		{ echo "Produto não encontrado!"; }
+		{ 
+		echo "<script> alert ('não encontrado!'); location.href='postaradm.php'</script>"; exit;
+
+		}
 	}
-	}
-	mysqli_close($conexao);
-?>
+	
+	
