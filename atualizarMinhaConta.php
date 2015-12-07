@@ -45,8 +45,8 @@ include("connection.php");
 	  <hr>
       <form action="" method="POST" >
 	    
-		<p>Nome:<input type="text" name="nome" value="<?php echo $_SESSION['nome']; ?>"></p>
-        <p>Login:<input type="text" name="login" value="<?php echo $_SESSION['loginuser']; ?>"></p>
+		
+        <p>Login:<input type="text" name="login" value="<?php echo $_SESSION['user']; ?>"></p>
         <p>Senha:<input type="password" name="senha" value="<?php echo $_SESSION['senha']; ?>"></p>
 		<p>Email:<input type="text" name="email"  value="<?php echo $_SESSION['email']; ?>" </p>
         <p class="submit"><input type="submit" name="atualizar" value="Atualizar"></p>
@@ -66,11 +66,11 @@ include("connection.php");
 	if(isset( $_POST["atualizar"])){
 
 
-$nome = $_POST['nome'];
-$user = $_POST['login'];
+$user = $_SESSION['user'];
+$login = $_POST['login'];
 $pass = $_POST['senha'];
 $email = $_POST['email'];	
-$sql = "UPDATE `ops`.`usuario` SET `nome` = '$nome', `login` = '$user', `senha` = '$pass', `email` = '$email' WHERE `usuario`.`login` = '$user'";
+$sql = "UPDATE `bdops`.`usuario` SET `login` = '$login', `senha` = '$pass', `email` = '$email' WHERE `usuario`.`login` = '$user';";
 $resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 
 		
 		echo "<script> alert ('Atualizado com sucesso'); location.href='minhaconta.php'</script>"; exit;

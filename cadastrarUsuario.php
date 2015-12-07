@@ -1,6 +1,7 @@
 <?php
 
 include("connection.php");
+require_once("classes/usuario.php");
 
 ?>
 
@@ -44,10 +45,10 @@ include("connection.php");
       <h1>Cadastrar Usuário</h1>
 	  <hr>
       <form action="cadastrarUsuario.php?pag=checkLogin" method="POST" >
-		<p>Nome:<input type="text" name="nome" placeholder="Nome"></p>
-        <p>Login:<input type="text" name="login"  placeholder="Login"></p>
+		
+        <p>Usuário:<input type="text" name="login"  placeholder="Login"></p>
         <p>Senha:<input type="password" name="senha"  placeholder="Senha"></p>
-		<p>Email:<input type="text" name="email"  placeholder="Email"></p>
+		    <p>Email:<input type="text" name="email"  placeholder="Email"></p>
         <p class="submit"><input type="submit" name="commit" value="Cadastrar"></p>
       </form>
     </div>
@@ -64,15 +65,17 @@ include("connection.php");
 </html>
 <?php
 	if(isset( $_GET["pag"])){
-$nome = $_POST["nome"];
+
+$usuario = new Usuario();    
+
 $user = $_POST["login"];
 $pass = $_POST["senha"];
 $email = $_POST["email"];
-	if($user=="" OR $pass=="" OR $nome=="" OR $email=="" ){
+	if($user=="" OR $pass==""  OR $email=="" ){
 echo "<script> alert ('Preencha todos os campos'); location.href='cadastrarUsuario.php'</script>"; exit;
 }
-$sql = "INSERT INTO usuario(nome, login, senha, email, permissao) VALUES ";
-		$sql .= "('$nome','$user','$pass','$email','0')";
+$sql = "INSERT INTO usuario( login, senha, email, permissao) VALUES ";
+		$sql .= "('$user','$pass','$email','0')";
 		$resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 
 		
 		echo "<script> alert ('Usuário cadastrado com sucesso'); location.href='login.php'</script>"; exit;

@@ -51,7 +51,7 @@ include("connection.php");
 	  <hr>
       <form action="" method="POST" >
 	    
-		<p>Nome:<input type="text" name="nome" value="<?php echo $_SESSION['nome']; ?>"></p>
+		
         <p>Login:<input type="text" name="login" value="<?php echo $_SESSION['loginuser']; ?>"></p>
         <p>Senha:<input type="password" name="senha" value="<?php echo $_SESSION['senha']; ?>"></p>
 		<p>Email:<input type="text" name="email"  value="<?php echo $_SESSION['email']; ?>" </p>
@@ -73,11 +73,11 @@ include("connection.php");
 
 	if(isset( $_POST["atualizar"])){
 $codigo = $_SESSION['codigo'];
-$nome = $_POST['nome'];
+
 $user = $_POST['login'];
 $pass = $_POST['senha'];
 $email = $_POST['email'];	
-$sql = "UPDATE `ops`.`usuario` SET `nome` = '$nome', `login` = '$user', `senha` = '$pass', `email` = '' WHERE `usuario`.`id` = $codigo";
+$sql = "UPDATE `ops`.`usuario` SET  `login` = '$user', `senha` = '$pass', `email` = '' WHERE `usuario`.`id` = $codigo";
 $resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 
 		
 		echo "<script> alert ('Atualizado com sucesso'); location.href='visualisarUsuario.php'</script>"; exit;

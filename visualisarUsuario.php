@@ -60,7 +60,10 @@ include("connection.php");
 		$linhas = mysqli_num_rows ($resultado);
 			for ($i=0 ; $i<$linhas ; $i++)
 		{
-			$reg = mysqli_fetch_row($resultado);  
+			$reg = mysqli_fetch_row($resultado);
+			
+
+
 			
 			echo "<table border='1px'> <tr> <td>$reg[0]</td> <td>$reg[1]</td> <td>$reg[2]</td> <td>$reg[3]</td>";
 			echo "<td>$reg[4]</td> </tr>"; 
@@ -118,12 +121,10 @@ $linhas2 = mysqli_num_rows($check2);
 $dadosUsuario = mysqli_fetch_array($check2);
 	
 	
-$nome = $dadosUsuario["nome"];
 $user = $dadosUsuario["login"];
 $pass = $dadosUsuario["senha"];
 $email = $dadosUsuario["email"];
 $_SESSION['codigo'] = $codigo;
-$_SESSION['nome'] = $nome;
 $_SESSION['loginuser'] = $user;
 $_SESSION['senha'] = $pass;
 $_SESSION['email'] = $email;
