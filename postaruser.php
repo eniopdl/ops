@@ -127,7 +127,7 @@ include("connection.php");
 
             echo "<h4>Endereço: &nbsp $reg[0] ;$reg[1]; $reg[2]; $reg[3] </h4>";
             echo "<h4>Nome do Local: $reg[4]</h4> ";
-            echo "<table><tr><td><br><img src='uploads/$reg[5] '  width='400px' height='300px' /></td> <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td> <td><iframe src='https://www.google.com/maps/embed?pb=$reg[0]$reg[1]$reg[2]$reg[3]+Brasil' width='300' height='250' frameborder='0' style='border:0' allowfullscreen></iframe></td></table>";  
+            echo "<table><tr><td><br><img src='uploads/$reg[5] '  width='400px' height='300px' /></td></table>";  
             echo " <h6>$reg[6] </h6> <h4>$reg[7]</h4>";
             echo "<table text='center'> <tr> <td> $reg[9] ótimo </td> <td> $reg[12] regular </td> <td> $reg[15] pessimo</td> </tr>";
             echo " <tr> <td> <a href='postaruser.php?otimo=$reg[8]' > <img src='curtir/$reg[10]' width='100px' height='50px'> </a> </td>";

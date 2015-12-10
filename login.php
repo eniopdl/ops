@@ -128,7 +128,7 @@
 </html>
 
 <?php
-if(isset( $_POST['logar'])){
+if(isset( $_GET['pag'])){
     $user = $_POST["login"];
     $pass = $_POST["senha"];
 
