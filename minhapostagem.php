@@ -3,8 +3,9 @@ ob_start();
 session_start();
 
 include("connection.php");
+
 ?>
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -15,20 +16,93 @@ include("connection.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Minha Postagem</title>
+    <title>Postagens</title>
     <link rel="icon" href="imagems/icone.png">
     <link href="css/estilos.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
+     <link  href="https://google-developers.appspot.com/maps/documentation/javasript/examples/default.css" rel="stylesheet">
+<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script>
+var geocoder;
+var map;
+function initialize(){
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-8.3661457,-40.3277001);
+    var mapOptions={
+        zoom:8,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        
+        <?php
+                    
+
+
+                    $usuario = $_SESSION['user'];
+                    //recupera id usuario
+                    $resultado4 = mysqli_query ($conexao,   "SELECT usuario.id FROM usuario WHERE login='$usuario'");
+                    $linhas4 = mysqli_num_rows ($resultado4);
+                   for ($q=0 ; $q<$linhas4 ; $q++)
+                        {
+                            $reg4 = mysqli_fetch_row($resultado4);
+                            $user = $reg4['0'];
+                        }
+                    
+                    //mostrar ppostagem
+            
+
+              
+
+            $resultado = mysqli_query ($conexao,    "SELECT  endereco.rua, endereco.bairro, endereco.cidade, endereco.Estado , postagem.local, postagem.imagem, postagem.data, postagem.comentario, postagem.id_otimo, otimo.cont, otimo.imgc, postagem.id_regula, regula.cont, regula.imgc, postagem.id_pessimo, pessimo.cont, pessimo.imgc  FROM postagem 
+                INNER JOIN usuario ON usuario.id = postagem.id_usuario
+                INNER JOIN endereco ON endereco.id = postagem.id_endereco 
+                INNER JOIN otimo ON otimo.id= postagem.id_otimo 
+                INNER JOIN regula ON regula.id= postagem.id_regula
+                INNER JOIN pessimo ON pessimo.id= postagem.id_pessimo
+                WHERE postagem.id_usuario = '$user'");
+                $linhas = mysqli_num_rows ($resultado);
+
+             for ($i=0 ; $i<$linhas ; $i++)
+            {
+                $reg = mysqli_fetch_row($resultado);
+                
+                $local = "$reg[4] $reg[0] $reg[1] $reg[2] $reg[3] ";
+           ?>
+        var address = "<?php echo $local; ?>";
+        geocoder.geocode( { 'address' : address}, function(results, status){
+        if(status == google.maps.GeocoderStatus.OK){
+        map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                animation: google.maps.Animation.BOUNCE,
+                title: "<?php echo $reg[4]; ?>",
+                position : results[0].geometry.location
+        });
+        } else {
+            alert('Geocode was not successful for the following reason: '+ status);
+        }
+    });
+
+<?php } ?>
+
+}
+
+
+    
+ 
+</script>
 
 </head>
 
-<body>
-
-   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<body onload="initialize()">
+         
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -82,10 +156,11 @@ include("connection.php");
     </nav>
     
 
-< <div class="container" id="conteudo">
+ <div class="container" id="conteudo">
         <section class="container-fluid">
             <h3 class="text-center">Minhas Postagens</h3>
             <hr/>
+            <div class="navbar-right"  id="map_canvas" style="height:90%; width:50%; top:30px"></div>
 			<?php
                     
 
@@ -121,7 +196,7 @@ include("connection.php");
 
             echo "<h4>Endereço: &nbsp $reg[0] ;$reg[1]; $reg[2]; $reg[3] </h4>";
             echo "<h4>Nome do Local: $reg[4]</h4> ";
-            echo "<table><tr><td><br><img src='uploads/$reg[5] '  width='400px' height='300px' /></td> <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td> <td><iframe src='https://www.google.com/maps/embed?pb=$reg[0]+$reg[1]+$reg[2]+$reg[3]' width='300' height='250' frameborder='0' style='border:0' allowfullscreen></iframe></td></table>";  
+            echo "<table><tr><td><br><img src='uploads/$reg[5] '  width='400px' height='300px' /></td> </table>";  
             echo " <h6>$reg[6] </h6> <h4>$reg[7]</h4>";
             echo "<table text='center'> <tr> <td> $reg[9] ótimo </td> <td> $reg[12] regular </td> <td> $reg[15] pessimo</td> </tr>";
             echo " <tr> <td>  <img src='curtir/$reg[10]' width='60px' height='40px'></td>";

@@ -1,11 +1,12 @@
+<!-- iniciando as ssession -->
 <?php
 ob_start();
 session_start();
-
+//conexao com banco
 include("connection.php");
 
 ?>
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -20,15 +21,73 @@ include("connection.php");
     <link rel="icon" href="imagems/icone.png">
     <link href="css/estilos.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
+     <link  href="https://google-developers.appspot.com/maps/documentation/javasript/examples/default.css" rel="stylesheet">
+<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script>
+//visualizacao do mapa
+var geocoder;
+var map;
+function initialize(){
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-8.3661457,-40.3277001);
+    var mapOptions={
+        zoom:8,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        
+        <?php
+            // visualizar endereco da postagem
+            $resultado = mysqli_query ($conexao,    "SELECT endereco.rua, endereco.bairro, endereco.cidade, endereco.Estado , postagem.local, postagem.imagem, postagem.data, postagem.comentario, postagem.id_otimo, otimo.cont, otimo.imgc, postagem.id_regula, regula.cont, regula.imgc, postagem.id_pessimo, pessimo.cont, pessimo.imgc  FROM postagem 
+                INNER JOIN endereco ON endereco.id = postagem.id_endereco 
+                INNER JOIN otimo ON otimo.id= postagem.id_otimo 
+                INNER JOIN regula ON regula.id= postagem.id_regula
+                INNER JOIN pessimo ON pessimo.id= postagem.id_pessimo
+                ORDER BY postagem.id DESC");
+            $linhas = mysqli_num_rows ($resultado);
+
+             for ($i=0 ; $i<$linhas ; $i++)
+            {
+                $reg = mysqli_fetch_row($resultado);
+                
+                $local = "$reg[4] $reg[0] $reg[1] $reg[2] $reg[3] ";
+           ?>
+           //marca endereco no mapa
+        var address = "<?php echo $local; ?>";
+        geocoder.geocode( { 'address' : address}, function(results, status){
+        if(status == google.maps.GeocoderStatus.OK){
+        map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                animation: google.maps.Animation.BOUNCE,
+                title: "<?php echo $reg[4]; ?>",
+                position : results[0].geometry.location
+        });
+        } else {
+            alert('Geocode was not successful for the following reason: '+ status);
+        }
+    });
+
+<?php } ?>
+
+}
+
+
+    
+ 
+</script>
 
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <!-- menu do usuario -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -84,8 +143,18 @@ include("connection.php");
     <div class="container" id="conteudo">
         <section class="container-fluid">
             <h3 class="text-center">Informações Postadas</h3>
+            <!-- Button -->
+                  <div class="col-sm-12 controls">
+                    <p class="submit" id="btn-login"><input class="btn btn-success" type="submit" onclick="initialize()" name="commit" value="visualizar no Google Maps  ">
+                    </div>
+                    <br>
+                    <br>
             <hr/>
+
+            <div class="navbar-right"  id="map_canvas" style="height:90%; width:50%; top:30px"></div>
             <?php
+
+            // escolher opcao de curtir
             if(isset( $_GET['otimo'])){
                 $otimo = $_GET['otimo'];
                 $sql = "UPDATE `bdops`.`otimo` SET `cont` = `cont`+'1', `imgc` = 'userOtimo.png' WHERE `otimo`.`id` = '$otimo'";
@@ -95,7 +164,7 @@ include("connection.php");
 
             if(isset( $_GET['regula'])){
                 $regula = $_GET['regula'];
-                $sql1 = "UPDATE `bdops`.`regula` SET `cont` = `cont`+'1', `imgc` = 'userRegula.png'  WHERE `regula`.`id` = '$regula'";
+                $sql1 = "UPDATE `bdops`.`regula` SET `cont` = `cont`+'1', `imgc` = 'userRegular.png'  WHERE `regula`.`id` = '$regula'";
                 $resultado1 = mysqli_query ($conexao,$sql1) or die("erro na query regula"); 
                 header("Location: postagemCurtidaUser.php"); exit;
             }
@@ -111,7 +180,7 @@ include("connection.php");
             ?>
 
             <?php
-
+            // visualizar dados da postagem
             $resultado = mysqli_query ($conexao,    "SELECT endereco.rua, endereco.bairro, endereco.cidade, endereco.Estado , postagem.local, postagem.imagem, postagem.data, postagem.comentario, postagem.id_otimo, otimo.cont, otimo.img, postagem.id_regula, regula.cont, regula.img, postagem.id_pessimo, pessimo.cont, pessimo.img  FROM postagem 
                 INNER JOIN endereco ON endereco.id = postagem.id_endereco 
                 INNER JOIN otimo ON otimo.id= postagem.id_otimo 
@@ -133,7 +202,7 @@ include("connection.php");
             echo " <tr> <td> <a href='postaruser.php?otimo=$reg[8]' > <img src='curtir/$reg[10]' width='100px' height='50px'> </a> </td>";
             echo "<td><a href='postaruser.php?regula=$reg[11]'> <img src='curtir/$reg[13]' width='100px' height='50px'></a> </td>";
             echo "<td><a href='postaruser.php?pessimo=$reg[14]'><img src='curtir/$reg[16]' width='100px' height='50px'></a> </td> </tr> </table>";   
-            echo "<hr/>";
+            echo "<hr size='2' color='#33CC66'>";
             
             }
 

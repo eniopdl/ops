@@ -1,7 +1,8 @@
+<!-- INCIANDO AS VARIAVEIS SESSION -->
 <?php
 ob_start();
 session_start();
-
+//CONEXAO BANCO
 include("connection.php");
 ?>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ include("connection.php");
 </head>
 
 <body>
-
+<!-- MENU ADM -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -62,6 +63,7 @@ include("connection.php");
         <ul class="nav navbar-nav navbar-right">
           <li>
             <h4><?php
+            //ADMINISTRADOR
             echo $_SESSION['useradm'];
             ?>
             </h4>
@@ -85,7 +87,7 @@ include("connection.php");
             <div class="form-group">
                 
             </div>
-
+            <!-- INTERFACE -->
             <div class="form-group">
                 <label class="control-label col-xs-3">nome de Usuario:</label>
                 <div class="col-xs-6">
@@ -131,7 +133,7 @@ include("connection.php");
 </body>
 </html>
 <?php
-
+//CAPTURA DADOS
 	if(isset( $_POST["atualizar"])){
 $nome =$_SESSION['nome'];
 $user = $_POST['usuario'];

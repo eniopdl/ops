@@ -28,6 +28,7 @@
                 </button>
                 <a class="navbar-brand" ><img src="imagems/logo.png" width="50px"></a>
             </div>
+            <!-- MENU DA PAGINA -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
@@ -58,7 +59,7 @@
                 <h1>Bem vindo ao Ops!</h1>
             </div>
         </div>
-        
+        <!-- EFEITO DE IMAGEM -->
         <section id="sliderhome">
             <div id="slider" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -67,7 +68,7 @@
                     <li data-target="#meuSlider" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="item active"><img src="imagems/img7.jpg" alt="Slider 1" /></div>
+                    <div class="item active"><img src="imagems/Fatec Cariri 1.jpg" alt="Slider 1" /></div>
                     <div class="item"><img src="imagems/img8.jpg" alt ="Slide 2" /></div>
                     <div class="item"><img src="imagems/img9.jpg" alt="Slide 3" /></div>
                 </div>
@@ -85,6 +86,7 @@
             <div role="main" class="col-md-6 col-md-push-3"></div>
             <aside role="complementary" class="col-md-3 col-md-push-3"></aside>
         </section>
+        <!-- RODAPÉ -->
         <footer>
             <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
                <div class="row">

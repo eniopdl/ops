@@ -1,6 +1,8 @@
+    <!-- INCIANDO AS VARIAVEIS SESSION -->
     <?php
     ob_start();
     session_start();
+    //VERIFICA QUAL PERMISSAO
     if(isset($_SESSION['user'])){
         header("Location: areauser.php"); exit; 
     } else if(isset($_SESSION['useradm'])){
@@ -22,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-
+     
         <title>Entrar</title>
         <link rel="icon" href="imagems/icone.png">
         <link href="css/estilos.css" rel="stylesheet">
@@ -31,7 +33,7 @@
     </head>
 
     <body>
-
+<!-- MENU -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -114,6 +116,11 @@
         <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
            <div class="row">
             <div class="span12">
+
+
+
+
+
                 <p class="text-center">&copy; Ops - Todos os direitos Resevados 2015.</p>
             </div>
         </div>
@@ -128,25 +135,29 @@
 </html>
 
 <?php
+//RECEBE ACAO DO FORM
 if(isset( $_GET['pag'])){
+    //CAPTURA DODOS DA INTERFACE
     $user = $_POST["login"];
     $pass = $_POST["senha"];
-
+//VERIFICA CAMPOS ESTAO PREENCHIDO
     if($user=="" OR $pass==""){
         echo "<script> alert ('Preencha todos os campos'); location.href='login.php' </script>";exit;
     }
+    //VERIFICA SENHA DODOS SENHA E NOME DO USUARIO
     $check = mysqli_query ($conexao,	"SELECT * FROM usuario WHERE login='$user' AND senha='$pass'") or die ("erro na query");
     $linhas = mysqli_num_rows($check);
     if($linhas > 0) {
-
+//VERIFICA SE É ADM OU USUARIO
         $check2 = mysqli_query ($conexao,	"SELECT permissao FROM usuario WHERE login='$user'") or die ("erro na query");
         $linhas2 = mysqli_num_rows($check2);
         if($linhas2){
             $dadosUsuario = mysqli_fetch_array($check2);
+            //TELA ADMINISTRADOR
             if($dadosUsuario["permissao"] == 1){
              $_SESSION['useradm'] = $user;
              echo "<script> alert ('Bem vindo ao painel de controle!'); location.href='areaadm.php'</script>"; exit;
-
+            //TELA USUARIO COMUM
          } else if($dadosUsuario["permissao"] == 0){
             $_SESSION['user'] = $user;
             echo "<script> alert ('Logado com Sucesso Bem vindo!'); location.href='areauser.php'</script>"; exit;

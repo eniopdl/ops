@@ -1,3 +1,4 @@
+<!-- INCIANDO AS VARIAVEIS SESSION -->
 <?php
 ob_start();
 session_start();
@@ -35,8 +36,10 @@ session_start();
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+
 				<a class="navbar-brand" ><img src="imagems/logo.png" width="50px"></a>
 			</div>
+			<!-- MENU DA PAGINA ADMINISTRADOR -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li>
@@ -60,12 +63,14 @@ session_start();
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
+						<!-- ADMINISTRADOR -->
 						<h4><?php
 						echo $_SESSION['useradm'];
 						?>
 						</h4>
 					</li>
 					<li>
+						<!-- LINK SAIR DA PAGINA -->
 						<a href="sair.php">Sair</a>
 					</li>
 				</ul>
@@ -85,6 +90,7 @@ session_start();
                     <li data-target="#meuSlider" data-slide-to="1"></li>
                     <li data-target="#meuSlider" data-slide-to="2"></li>
                 </ol>
+                <!-- EFEITO IMAGEM -->
                 <div class="carousel-inner">
                     <div class="item active"><img src="imagems/img7.jpg" alt="Slider 1" /></div>
                     <div class="item"><img src="imagems/img8.jpg" alt ="Slide 2" /></div>

@@ -49,7 +49,7 @@ function initialize(){
             {
                 $reg = mysqli_fetch_row($resultado);
                 
-                $local = "$reg[0] $reg[1] $reg[2] $reg[3] ";
+                $local = "$reg[4] $reg[0] $reg[1] $reg[2] $reg[3] ";
            ?>
         var address = "<?php echo $local; ?>";
         geocoder.geocode( { 'address' : address}, function(results, status){
@@ -58,7 +58,7 @@ function initialize(){
             var marker = new google.maps.Marker({
                 map: map,
                 animation: google.maps.Animation.BOUNCE,
-                title: "Hello World!",
+                title: "<?php echo $reg[4]; ?>",
                 position : results[0].geometry.location
         });
         } else {

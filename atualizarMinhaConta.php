@@ -1,7 +1,8 @@
+<!-- INCIANDO AS VARIAVEIS SESSION -->
 <?php
 ob_start();
 session_start();
-
+//CONEXAO COM BANCO
 include("connection.php");
 ?>
 <!DOCTYPE html>
@@ -44,6 +45,7 @@ include("connection.php");
 				</button>
 				<a class="navbar-brand" ><img src="imagems/logo.png" width="50px"></a>
 			</div>
+			<!-- MENU -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li>
@@ -73,7 +75,7 @@ include("connection.php");
 			 <li class="dropdown"> 
                     <a href="WebInicio.aspx" class="dropdown-toggle" data-toggle="dropdown"><img src="imagems/perfil.png"  /><b class="caret"></b>
                          <ul class="dropdown-menu">
-                             
+                             <!-- MENU -->
                              <li><a href="minhaconta.php">Meu Perfil</a></li>
 					         <li><a href="minhapostagem.php">Minha Postagem</a></li>
 					         <li><a href="sair.php">Sair</a></li>
@@ -90,6 +92,7 @@ include("connection.php");
 	
 <div class="container">
 	<section>
+		<!-- INTERFACE DA PAGINA E CAPTURANDO OS DADOS PREENCHENDO OS COMPONENTES TEXT  -->
 		<div class="form-horizontal">
 			<h1 class="text-center">Atualizar Minha Conta</h1>
 			<hr>
@@ -141,14 +144,15 @@ include("connection.php");
 
 
 <?php
-
+//CAPTURO OS DADOS
 	if(isset( $_POST["atualizar"])){
 
 
 $user = $_SESSION['user'];
 $login = $_POST['login'];
 $pass = $_POST['senha'];
-$email = $_POST['email'];	
+$email = $_POST['email'];
+//ATUALIZAR USUARIO	
 $sql = "UPDATE `bdops`.`usuario` SET `login` = '$login', `senha` = '$pass', `email` = '$email' WHERE `usuario`.`login` = '$user';";
 $resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 
 		

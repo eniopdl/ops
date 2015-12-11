@@ -1,8 +1,9 @@
+<!-- INCIANDO AS VARIAVEIS SESSION -->
 <?php
 ob_start();
 session_start();
 
-
+//conexao banco
 include("connection.php");
 
 
@@ -36,7 +37,7 @@ include("connection.php");
 </head>
 
 <body>
-
+<!-- MENU-->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -81,7 +82,7 @@ include("connection.php");
       <hr>
       <form method="POST" >
             <div class="form-group">
-                
+         <!-- INTERFACE -->       
             </div>
             <div class="form-group">
                 <label class="control-label col-xs-3">Email:</label>
@@ -121,13 +122,14 @@ include("connection.php");
 </body>
 </html>
 <?php
-
+//CAPTURA DE DADOS DA TELA
 	if(isset( $_POST["atualizar"])){
 $codigo = $_SESSION['codigo'];
 
 $user = $_POST['login'];
 $pass = $_POST['senha'];
 $email = $_POST['email'];	
+//ATUALIZA USUARIO
 $sql = "UPDATE `ops`.`usuario` SET  `login` = '$user', `senha` = '$pass', `email` = '' WHERE `usuario`.`id` = $codigo";
 $resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 
 		

@@ -1,8 +1,9 @@
+<!-- iniciando as ssessions-->
 <?php
 ob_start();
 session_start();
 
-
+//conexao com banco
 include("connection.php");
 
 ?>
@@ -17,7 +18,7 @@ include("connection.php");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Home</title>
+  <title>Cadastar postagem adm</title>
   <link rel="icon" href="imagems/icone.png">
   <link href="css/estilos.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -40,6 +41,7 @@ include("connection.php");
         </button>
         <a class="navbar-brand" ><img src="imagems/logo.png" width="50px"></a>
       </div>
+      <!-- menu adm-->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li>
@@ -80,7 +82,7 @@ include("connection.php");
             <h3 class="text-center">Criar Denúncia</h3>
             <hr/>
             <div class="form">
-
+<!-- interface cadastrar postagem adm-->
               <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" name="enviaarquivo" id="enviaarquivo">
                 <fieldset>
 
@@ -243,18 +245,18 @@ if(isset($_POST['envia'])){
         $resultado7 = mysqli_query ($conexao,$sql7) or die("erro na query pessimo");
         
         //preenchendo tabela otimo
-        $sql8 = "INSERT INTO `bdops`.`otimo` ( `id`, `cont`, `img`) VALUES"; 
-        $sql8 .= "( '$idPoster', '0', '')";
+        $sql8 = "INSERT INTO `bdops`.`otimo` ( `id`, `cont`, `img`, `imgc`) VALUES"; 
+        $sql8 .= "( '$idPoster', '0', 'otimo.png', 'notimo.png')";
         $resultado8 = mysqli_query ($conexao,$sql8) or die("erro na query inserir otimo"); 
         
-        //preenchendo tabela pessimo
-        $sql9 = "INSERT INTO `bdops`.`regula` ( `id`, `cont`, `img`) VALUES"; 
-        $sql9 .= "( '$idPoster', '0', '')";
+        //preenchendo tabela regular
+        $sql9 = "INSERT INTO `bdops`.`regula` ( `id`, `cont`, `img`, `imgc`) VALUES"; 
+        $sql9 .= "( '$idPoster', '0', 'regula.png', 'nregula.png')";
         $resultado9 = mysqli_query ($conexao,$sql9) or die("erro na query inserir regula"); 
         
         //preenchendo tabela pessimo
-        $sql10 = "INSERT INTO `bdops`.`pessimo` ( `id`, `cont`, `img`) VALUES"; 
-        $sql10 .= "( '$idPoster', '0', '')";
+        $sql10 = "INSERT INTO `bdops`.`pessimo` ( `id`, `cont`, `img`, `imgc`) VALUES"; 
+        $sql10 .= "( '$idPoster', '0', 'pessimo.png', 'npessimo.png')";
         $resultado10 = mysqli_query ($conexao,$sql10) or die("erro na query inserir pessimo"); 
 
 

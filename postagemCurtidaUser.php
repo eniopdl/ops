@@ -57,6 +57,7 @@ function initialize(){
         map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
                 map: map,
+                title: "<?php echo $reg[4]; ?>",
                 position : results[0].geometry.location
         });
         } else {
@@ -143,7 +144,7 @@ function initialize(){
             
 
             <?php
-
+//amostrando campos da postagem
             $resultado = mysqli_query ($conexao,    "SELECT endereco.rua, endereco.bairro, endereco.cidade, endereco.Estado , postagem.local, postagem.imagem, postagem.data, postagem.comentario, postagem.id_otimo, otimo.cont, otimo.imgc, postagem.id_regula, regula.cont, regula.imgc, postagem.id_pessimo, pessimo.cont, pessimo.imgc  FROM postagem 
                 INNER JOIN endereco ON endereco.id = postagem.id_endereco 
                 INNER JOIN otimo ON otimo.id= postagem.id_otimo 

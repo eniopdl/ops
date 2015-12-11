@@ -46,7 +46,7 @@ include("connection.php");
 						<a href="areaadm.php">Início</a>
 					</li>
 					<li>
-						<a href="postaradm.php">Postagens</a>
+						<a href="postagem.php">Postagens</a>
 					</li>
 					<li>
 						<a href="contatoadm.php">Contato</a>
