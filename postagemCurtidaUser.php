@@ -1,7 +1,8 @@
+<!-- INCIANDO AS VARIAVEIS SESSION -->
 <?php
 ob_start();
 session_start();
-
+//conexao com banco
 include("connection.php");
 
 ?>
@@ -22,6 +23,7 @@ include("connection.php");
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
      <link  href="https://google-developers.appspot.com/maps/documentation/javasript/examples/default.css" rel="stylesheet">
 <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<!-- exinbindo google maps-->
 <script>
 var geocoder;
 var map;
@@ -36,7 +38,7 @@ function initialize(){
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
         
         <?php
-
+            //exibindo endereco 
             $resultado = mysqli_query ($conexao,    "SELECT endereco.rua, endereco.bairro, endereco.cidade, endereco.Estado , postagem.local, postagem.imagem, postagem.data, postagem.comentario, postagem.id_otimo, otimo.cont, otimo.imgc, postagem.id_regula, regula.cont, regula.imgc, postagem.id_pessimo, pessimo.cont, pessimo.imgc  FROM postagem 
                 INNER JOIN endereco ON endereco.id = postagem.id_endereco 
                 INNER JOIN otimo ON otimo.id= postagem.id_otimo 

@@ -92,9 +92,9 @@ session_start();
                 </ol>
                 <!-- EFEITO IMAGEM -->
                 <div class="carousel-inner">
-                    <div class="item active"><img src="imagems/img7.jpg" alt="Slider 1" /></div>
+                    <div class="item active"><img src="imagems/Fatec Cariri 1.jpg" alt="Slider 1" /></div>
                     <div class="item"><img src="imagems/img8.jpg" alt ="Slide 2" /></div>
-                    <div class="item"><img src="imagems/img9.jpg" alt="Slide 3" /></div>
+                    <div class="item"><img src="imagems/hp.png" alt="Slide 3" /></div>
                 </div>
                 <a class="left carousel-control" href="#meuSlider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 <a class="right carousel-control" href="#meuSlider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>

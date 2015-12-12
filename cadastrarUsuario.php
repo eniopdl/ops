@@ -1,7 +1,7 @@
-<?php
 
+<?php
+//conexao com banco
 include("connection.php");
-require_once("classes/usuario.php");
 
 ?>
 
@@ -33,6 +33,7 @@ require_once("classes/usuario.php");
 </head>
 
 <body>
+<!-- menu da apgina index -->
 
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -65,6 +66,8 @@ require_once("classes/usuario.php");
       </div>
     </div>
   </nav>
+  <!-- interface cadastrar usuario -->
+
   <div class="container" id="conteudo">
     <div class="row">
       <div class="col-lg-12 text-center">
@@ -133,17 +136,19 @@ require_once("classes/usuario.php");
 
 </html>
 <?php
+//captura acao do form 
 if(isset( $_GET["pag"])){
 
-  $usuario = new Usuario();    
-
+     
+//recebendo dados da interface 
   $user = $_POST["login"];
   $email = $_POST["email"];
   $pass = $_POST["senha"];
-  
+  //verifica se os campos preenchidos
   if($user=="" OR $email=="" OR $pass=="" ){
     echo "<script> alert ('Preencha todos os campos'); location.href='cadastrarUsuario.php'</script>"; exit;
   }
+  //insere o usuario
   $sql = "INSERT INTO usuario( login, email, senha,  permissao) VALUES ";
   $sql .= "('$user','$email','$pass','0')";
   $resultado = mysqli_query ($conexao,$sql) or die("erro na query"); 

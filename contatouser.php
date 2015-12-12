@@ -103,7 +103,7 @@ session_start();
                             </div>
                             <div class="col-sm-8" id="img-rede-social">
                                 <h4 class="span12 text-center">Redes sociais </h4>
-                                <a href="https://pt-br.facebook.com/opsfatec"><img src="imagems/face.png" class="img-rounded"  height="100px" ></a>
+                                <a href="https://www.facebook.com/OPS-711456658960352"><img src="imagems/face.png" class="img-rounded"  height="100px" ></a>
                                 </hr>
                                 <a href="mailto:opsfatec@gmail.com"><img src="imagems/gmail.png" class="img-rounded" height="100px"></a><br>
                             </div>

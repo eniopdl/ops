@@ -23,6 +23,15 @@ session_start();
 </head>
 
 <body>
+	<div id="fb-root"></div>
+	<!-- Integrando com facebbok -->
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -58,12 +67,14 @@ session_start();
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<!-- usuario cadastrado -->
 					<li>
 						<h4> <?php
 						echo $_SESSION['user'];
 						?>
 						</h4>
 					</li>
+					<!-- menu conta do usuario-->
 			 <li class="dropdown"> 
                     <a href="WebInicio.aspx" class="dropdown-toggle" data-toggle="dropdown"><img src="imagems/perfil.png"  /><b class="caret"></b>
                          <ul class="dropdown-menu">
@@ -81,6 +92,7 @@ session_start();
 			</div>
 		</div>
 	</nav>
+	<div class="fb-like"></div>
 	<div class="container" id="conteudo">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -96,9 +108,9 @@ session_start();
                 </ol>
                 <!-- EFEITO IMAGEM   -->
                 <div class="carousel-inner">
-                    <div class="item active"><img src="imagems/img7.jpg" alt="Slider 1" /></div>
+                   <div class="item active"><img src="imagems/Fatec Cariri 1.jpg" alt="Slider 1" /></div>
                     <div class="item"><img src="imagems/img8.jpg" alt ="Slide 2" /></div>
-                    <div class="item"><img src="imagems/img9.jpg" alt="Slide 3" /></div>
+                    <div class="item"><img src="imagems/hp.png" alt="Slide 3" /></div>
                 </div>
                 <a class="left carousel-control" href="#meuSlider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 <a class="right carousel-control" href="#meuSlider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -108,12 +120,13 @@ session_start();
         <section>
             <div class="row-fluid">
                 <div class="span12">
-                    <h4 class="text-center">“OPS” é um aplicativo via web capaz de informar para os usuários que o acessam, problemas relacionados à infraestrutura do local. Nesta versão será voltado para um ambiente interno, compartilhando informações.</h4>
+                    <h4 class="text-center">“OPS” é um aplicativo via web capaz de informar para os usuários que o acessam,  opnião publica sobre os  locais.</h4>
                 </div>
             </div>
             <div role="main" class="col-md-6 col-md-push-3"></div>
             <aside role="complementary" class="col-md-3 col-md-push-3"></aside>
         </section>
+        <!-- rodape -->
 		<footer id="footer-gradiente">
 			<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
 				<div class="row">
